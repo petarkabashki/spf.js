@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+    <head></head>
+    <body>
+       <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+       <script src="forth.js?v=2"> </script>
+       <script src="forthweb.js?v=2"> </script>
+       <script src="dom.js?v=2"> </script>
+       <script src="io.js"> </script>
+       <script src="jquery.terminal-0.9.3.min.js"> </script>
+       <script src="https://cdn.socket.io/socket.io-1.4.5.js"></script>
+       <link rel="stylesheet" type="text/css" href="jquery.terminal-0.9.3.css">
+       <link rel="stylesheet" type="text/css" href="index.css">
+       <meta http-equiv="Cache-Control" content="no-store" />
+       <script> 
+       var term;
+
+jQuery(function($, undefined) {
+    term = $('#term_demo').terminal(function(command, term) {
+            try {
+                if( fs.global.read_console_fn ) {
+                   fs.global.read_console_fn(command + '\n');
+                }
+
+            } catch(e) {
+                term.error(new String(e));
+            }
+    }, {
+        greetings: '',
+        name: 'forth_demo',
+        height: 400,
+        prompt: 'SPF> '});
+});
+         StartForth("forth.img"); 
+
+
+       </script>
+       The FORTH system
+       <div id="term_demo"></div>
+       Type <b>tests.f</b> or <b>S" tests.f" INCLUDED</b> to load full ANS 94 test suite.
+       <canvas id="canvas"></canvas>
+    </body>
+</html>
